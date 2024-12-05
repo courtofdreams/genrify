@@ -1,10 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'https://fonts.googleapis.com/css?family=Lily+Script+One';
+
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --surface-color: #fff;
+  --curve: 40;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(152, 152, 152);
+}
+
+@font-face {
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('./fonts/PressStart2P-Regular.ttf');
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,8 +33,64 @@
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+
+
+#login-container .login .big-btn {
+  margin: 10px 0 20px 0;
+}
+
+#login-container .login p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 12px;
+  margin-top: 0;
+}
+
+.card {
+  width: 300px;
+  height: 300px;
+  float: left;
+  perspective: 500px;
+}
+
+.content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.card:hover .content {
+  transform: rotateY( 180deg ) ;
+  transition: transform 0.5s;
+}
+
+.front,
+.back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  font-size: 60px;
+  border-radius: 5px;
+  backface-visibility: hidden;
+  
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
+.back {
+  transform: rotateY( 180deg );
+}
+
+.font-press-start {
+  font-family: 'Press Start 2P', cursive;
 }
