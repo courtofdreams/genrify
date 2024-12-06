@@ -5,7 +5,7 @@ export const useSpotifyAPI = () => {
   let redirectUri = "http://localhost:3000/callback";
   console.log(process.env.NODE_ENV);
   if(process.env.NODE_ENV === 'production'){
-    redirectUri = "https://genrify.vercel.app/callback";
+    redirectUri = "https://genrify-music.vercel.app/callback";
   }
 
   const generateRandomString = (length: number) => {
