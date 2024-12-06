@@ -15,6 +15,7 @@
 
 body {
   background-color: rgb(152, 152, 152);
+  overflow-x: hidden;
 }
 
 @font-face {
