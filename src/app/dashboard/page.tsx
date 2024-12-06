@@ -8,6 +8,7 @@ import axios from "axios";
 import GenreSuggestion, { GenreType } from "./GenreSuggestion";
 import { GenreDiscoverRequest, useMoodyAPI } from "../useMoodyAPI";
 import styles from '../Main.module.css';
+import GenreLoading from "./GenreLoading";
 
 const STORAGE_NAME = 'spotify_tokens';
 
@@ -26,6 +27,9 @@ type CurrentTrackItem = {
     [k: string]: SongType;
 }
 
+const textColorList = ["text-red-600", "text-green-600", "text-sky-500", "text-indigo-600", "text-purple-600", "text-pink-500", "text-yellow-500", "text-teal-400", "text-fuchsia-600"]
+const bgColorList = ["bg-red-600", "bg-green-600", "bg-sky-500", "bg-indigo-600", "bg-purple-600", "bg-pink-500", "bg-yellow-500", "bg-teal-400", "bg-fuchsia-600"]
+
 
 
 export default function Dashboard() {
@@ -35,6 +39,8 @@ export default function Dashboard() {
 
     const [recommendGenres, setRecommendGenres] = useState<GenreType[]>([]);
     const [me, setMe] = useState<Me>();
+    const [isGenreRecommendationFetching, setGenreRecommendationFetching] = useState<boolean>(true);
+
 
     const [spotifyTokens, setSpotifyTokens] = useState<SpotifyTokens>();
     const [isUnauthorizeAccess, setUnauthorizeAccess] = useState<boolean>(false);
@@ -184,6 +190,7 @@ export default function Dashboard() {
     }
 
     const fetchGenreRecommendation = (artists: any[]) => {
+        setGenreRecommendationFetching(true);
         let request = {} as GenreDiscoverRequest;
         artists.forEach((artist: any) => {
             request = {
@@ -215,18 +222,20 @@ export default function Dashboard() {
             .then((res) => {
                 const recGenres: GenreType[] = [];
                 res.data.genreRecommendation.forEach((genre: string) => {
+                    const randomIndex = Math.floor((Math.random() * textColorList.length));
                     recGenres.push({
                         name: genre,
-                        textColor: "text-red-600",
-                        bgColor: "bg-rose-700",
-                        font: "",
+                        textColor: textColorList[randomIndex],
+                        bgColor: bgColorList[randomIndex],
+                        font: "font-berkshire-swash",
                     })
 
                     setRecommendGenres(recGenres);
+                    setGenreRecommendationFetching(false);
                 });
             })
             .catch((err) => {
-                console.log(err);
+                alert("There is error when fetching genre recommendation, please try again later");
             })
 
     }
@@ -270,6 +279,7 @@ export default function Dashboard() {
             setRecentTrackItems({});
             setSongCountByRecentPlay(undefined);
             setSongCountByTopTracks(undefined);
+            setGenreRecommendationFetching(true);
         };
 
     }, [spotifyTokens]);
@@ -296,12 +306,15 @@ export default function Dashboard() {
             <div className={styles.introWrap}>
                 <div className={styles.noise}></div>
                 <div className={`${styles.noise} ${styles.noiseMoving}`}></div>
-                <div className={styles.play} data-splitting>Moody</div>
+                <div className={styles.play} data-splitting>Genrify</div>
             </div>
             {!isUnauthorizeAccess ? <>
                 <h2 className="text-gray-100 font-bold mt-10">Base on your recent plays, you should discover more on</h2>
                 <div className="grid grid-cols-3 mt-10 mb-10">
-                    {recommendGenres.map((genre: GenreType) => <GenreSuggestion key={genre.name} genre={genre}></GenreSuggestion>)}
+                    {isGenreRecommendationFetching ? <><GenreLoading></GenreLoading><GenreLoading></GenreLoading><GenreLoading></GenreLoading></> :
+                        recommendGenres.map((genre: GenreType) =>
+                            <GenreSuggestion key={genre.name} genre={genre}></GenreSuggestion>
+                        )}
                 </div>
                 <div className="grid grid-cols-3 mt-10 mb-10">
                     <div className="w-80 mr-4">

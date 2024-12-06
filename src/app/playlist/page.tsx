@@ -201,7 +201,7 @@ export default function Playlist() {
                     <div className={styles.introWrap}>
                         <div className={styles.noise}></div>
                         <div className={`${styles.noise} ${styles.noiseMoving}`}></div>
-                        <div className={styles.play} data-splitting>Moody</div>
+                        <div className={styles.play} data-splitting>Genrify</div>
                     </div>
                     {/* <button onClick={getGenreRecommendation}>Genre Recommendation</button> */}
 

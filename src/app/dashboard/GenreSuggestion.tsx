@@ -15,10 +15,10 @@ const GenreSuggestion: React.FC<GenreProps> = ({ genre }) => {
     }
     return <div className="card h-48 w-48 mr-4 cursor-pointer" onClick={openSpotify}>
         <div className={`content ${genre.font}`}>
-            <div className={`front ${genre.textColor} bg-white`}>
+            <div className={`front ${genre.bgColor} text-white`}>
                 {genre.name}
             </div>
-            <div className={`back ${genre.bgColor} text-white`}>
+            <div className={`back ${genre.textColor} bg-white`}>
                 {genre.name}
             </div>
         </div>
