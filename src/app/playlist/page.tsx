@@ -54,7 +54,7 @@ export default function Playlist() {
                 fetchGenreRecommendation(response.data.artists);
             })
             .catch((e) => {
-                console.log(e);
+                console.error(e);
                 alert("Error, Something went wrong");
             })
     }
@@ -119,7 +119,7 @@ export default function Playlist() {
                 fetchTrackRecommendation(res.data.genreRecommendation);
             })
             .catch((err) => {
-                console.log(err);
+                console.error(err);
             })
 
     }

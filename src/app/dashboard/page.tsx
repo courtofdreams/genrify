@@ -33,7 +33,6 @@ const textColorList = ["text-red-600", "text-green-600", "text-sky-500", "text-i
 const bgColorList = ["bg-red-600", "bg-green-600", "bg-sky-500", "bg-indigo-600", "bg-purple-600", "bg-pink-500", "bg-yellow-500", "bg-teal-400", "bg-fuchsia-600"]
 
 
-
 export default function Dashboard() {
 
     const { getTopArtists, getRecentPlay, getTopTracks, fetchAccessToken, getSeveralArtist, getMe } = useSpotifyAPI();
@@ -186,7 +185,7 @@ export default function Dashboard() {
                 fetchGenreRecommendation(response.data.artists);
             })
             .catch((e) => {
-                console.log(e);
+                console.error(e);
                 alert("Error, Something went wrong");
             })
     }
@@ -302,7 +301,7 @@ export default function Dashboard() {
     return (
         <div className="flex flex-col items-center min-h-screen bg-gray-900">
             <div className="flex flex-row items-center w-full text-gray-100 mt-10 justify-end mr-10">
-                <img className="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500" src={me?.avatar} alt="Bordered avatar" />
+                <img className="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500" src={me?.avatar || "profile.png"} alt="Bordered avatar" />
                 <span className="ml-2 font-bold">{me?.displayName}</span>
             </div>
             <div className={styles.introWrap}>
@@ -311,7 +310,7 @@ export default function Dashboard() {
                 <div className={styles.play} data-splitting>Genrify</div>
             </div>
             {!isUnauthorizeAccess ? <>
-                <h2 className="text-gray-100 font-bold mt-10">Base on your recent plays, you should discover more on</h2>
+                <h2 className="text-gray-100 font-bold mt-10">Based on your recent plays, you should discover more on</h2>
                 <div className="grid grid-cols-3 mt-10 mb-10">
                     {isGenreRecommendationFetching ? <><GenreLoading></GenreLoading><GenreLoading></GenreLoading><GenreLoading></GenreLoading></> :
                         recommendGenres.map((genre: GenreType) =>

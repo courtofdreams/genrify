@@ -3,7 +3,6 @@ import axios from "axios";
 export const useSpotifyAPI = () => {
   const clientId = "5ef5f6c6680c4ce2981f3a925d85920d";
   let redirectUri = "http://localhost:3000/callback";
-  console.log(process.env.NODE_ENV);
   if(process.env.NODE_ENV === 'production'){
     redirectUri = "https://genrify-music.vercel.app/callback";
   }
@@ -35,7 +34,7 @@ export const useSpotifyAPI = () => {
     const codeChallenge = base64encode(hashed);
 
     const scope =
-      "user-read-private user-read-email playlist-read-private playlist-modify-private user-read-playback-position user-top-read user-read-recently-played user-read-currently-playing user-library-read";
+      "user-read-private user-read-email user-read-playback-position user-top-read user-read-recently-played user-read-currently-playing user-library-read";
     const authUrl = new URL("https://accounts.spotify.com/authorize");
 
     // generated in the previous step
