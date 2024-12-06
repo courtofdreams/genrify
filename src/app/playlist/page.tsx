@@ -163,7 +163,7 @@ export default function Playlist() {
                     }
                     localStorage.setItem('spotify_tokens', JSON.stringify(spotifyToken));
                     // Note: Change this to actual website
-                    window.location.href = 'localhost:3000/dashboard'
+                    window.location.href = '/dashboard'
                 })
                     .catch((_err: any) => {
                         setUnauthorizeAccess(true);

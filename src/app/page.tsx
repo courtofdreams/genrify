@@ -5,12 +5,16 @@ import Playlist from "./playlist/page";
 
 export default function Home() {
 
-  const render = ()=>{
-    const accessToken = localStorage.getItem('access_token');
-    console.log(accessToken);
-    if(accessToken  && accessToken !== ''){
-      return <Playlist />;
-    }else {
+  const render = () => {
+    if (typeof window !== 'undefined') {
+      const accessToken = localStorage.getItem('access_token');
+      console.log(accessToken);
+      if (accessToken && accessToken !== '') {
+        return <Playlist />;
+      } else {
+        return <Login />
+      }
+    }else{
       return <Login />
     }
   }

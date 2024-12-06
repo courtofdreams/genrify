@@ -2,7 +2,11 @@ import axios from "axios";
 
 export const useSpotifyAPI = () => {
   const clientId = "5ef5f6c6680c4ce2981f3a925d85920d";
-  const redirectUri = "http://localhost:3000/callback";
+  let redirectUri = "http://localhost:3000/callback";
+  console.log(process.env.NODE_ENV);
+  if(process.env.NODE_ENV === 'production'){
+    redirectUri = "https://genrify.vercel.app/callback";
+  }
 
   const generateRandomString = (length: number) => {
     const possible =

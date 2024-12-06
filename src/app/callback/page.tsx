@@ -27,7 +27,7 @@ export default function Callback() {
                 localStorage.setItem('spotify_code', code);
 
                 // Note: Change this to actual website
-                window.location.href = 'http://localhost:3000/dashboard'
+                window.location.href = '/dashboard'
             })
             .catch((_err: any) =>{
                 alert('Something went wrong, please try again')

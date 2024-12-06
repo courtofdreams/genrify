@@ -13,9 +13,11 @@ export default function Login() {
     }
 
     useEffect(() => {
-        localStorage.removeItem('code_verifier');
-        localStorage.removeItem('spotify_tokens');
-        localStorage.removeItem('spotify_code');
+        if (typeof window !== 'undefined') {
+            localStorage.removeItem('code_verifier');
+            localStorage.removeItem('spotify_tokens');
+            localStorage.removeItem('spotify_code');
+        }
     }, []);
 
     return (

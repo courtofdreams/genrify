@@ -10,7 +10,7 @@ export type GenreDiscoverRequest = {
 }
 
 export const useMoodyAPI = () => {
-  const baseURL = "http://127.0.0.1:5000";
+  const baseURL = "https://en9samg3kv.us-east-2.awsapprunner.com";
 
   const getGenreRecommendation = (request: GenreDiscoverRequest) => {
     const url = `${baseURL}/recommend-genre`
