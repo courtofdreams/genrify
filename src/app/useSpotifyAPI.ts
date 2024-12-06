@@ -111,8 +111,8 @@ export const useSpotifyAPI = () => {
   };
 
   const getSeveralArtist = (spotifyAccessToken: string, tokenType: string, ids: string[]) => {
-    const url = `https://api.spotify.com/v1/artists?ids=${ids.join(",")}`;
-
+    const maxIds = ids.slice(0, 50);
+    const url = `https://api.spotify.com/v1/artists?ids=${maxIds.join(",")}`;
 
     return axios.get(url, {
       headers: {
