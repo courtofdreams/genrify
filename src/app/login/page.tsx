@@ -28,13 +28,13 @@ export default function Login() {
                         <div className={styles.noise}></div>
                         <div className={`${styles.noise} ${styles.noiseMoving}`}></div>
                         <div className={styles.play} data-splitting>Genrify</div>
-                        <div className={styles.time}>--:--</div>
+                        <div className={styles.time}>--:---</div>
                         <div className={styles.login}>
                             <button onClick={onClickLogin} className={styles.loginBtn}>Log in with Spotify</button>
                             <p className="mt-3">Please login to get access to  spotify content.</p>
-                            <p>You will automatically be redirected to this page after login.</p>
+                            <p>You will automatically be redirected to this Genrify after login.</p>
                         </div>
-                        <div className={styles.recordSpeed}>SLP 0:00:00</div>
+                        <div className={styles.recordSpeed}>INFO 2:0:2</div>
                     </div>
                 </div>
             </main>
