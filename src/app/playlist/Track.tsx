@@ -40,7 +40,7 @@ const Track: React.FC<TrackProps> = ({ item }) => {
         </div>
         <div className="p-5">
             <h3 className="text-black text-lg text-ellipsis truncate hover:text-clip">{item.trackName}</h3>
-            <p className="text-gray-400 truncate hover:text-clip">{item.artistNames}</p>
+            <p className="text-gray-400 truncate hover:text-clip">{item.artistNames.join(",")}</p>
         </div>
 
     </div>;
