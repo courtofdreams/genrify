@@ -26,7 +26,7 @@ const Song: React.FC<SongProps> = ({ song }) => {
 
                 <div className="flex flex-col ml-3 min-w-0">
                     <div className="font-medium leading-none text-gray-100 w-56 overflow-hidden truncate">{song.trackName}</div>
-                    <p className="text-sm text-gray-500 leading-none mt-1 truncate">{song.artistNames}</p>
+                    <p className="text-sm text-gray-500 leading-none mt-1 truncate">{song.artistNames.join(",")}</p>
                 </div>
             </div>
         </div>
